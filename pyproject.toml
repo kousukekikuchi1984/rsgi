@@ -7,3 +7,15 @@ requires-python = ">=3.14"
 dependencies = [
     "granian>=2.6.1",
 ]
+
+[build-system]
+requires = ["setuptools>=69.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["rsgi*"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+]
