@@ -24,6 +24,36 @@ class RsgiApp:
     def add_middleware(self, middleware: Middleware) -> None:
         self._middleware.append(middleware)
 
+    def route(self, method: str, path_template: str):
+        return self.router.route(method, path_template)
+
+    def add_route(self, method: str, path_template: str, handler):
+        self.router.add(method, path_template, handler)
+
+    def include_router(self, router: Router, prefix: str = "") -> None:
+        self.router.include_router(router, prefix)
+
+    def get(self, path_template: str):
+        return self.router.get(path_template)
+
+    def post(self, path_template: str):
+        return self.router.post(path_template)
+
+    def put(self, path_template: str):
+        return self.router.put(path_template)
+
+    def patch(self, path_template: str):
+        return self.router.patch(path_template)
+
+    def delete(self, path_template: str):
+        return self.router.delete(path_template)
+
+    def options(self, path_template: str):
+        return self.router.options(path_template)
+
+    def head(self, path_template: str):
+        return self.router.head(path_template)
+
     async def handle(self, req: Request) -> Response:
         async def call_router(request: Request) -> Response:
             return await self.router.dispatch(request)

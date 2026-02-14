@@ -6,6 +6,8 @@
 
 - **Modular core**: `Request`, `Response`, and `Router` live under the `rsgi` package and are importable from `rsgi.__init__`.
 - **Routing ergonomics**: Decorators like `@router.get`/`post`/`include_router` support FastAPI-style handler definitions and namespaced routers.
+- **FastAPI-like helpers**: `RsgiApp` exposes the HTTP decorators directly (so you can `@app.get`), handlers may return dicts/strings/bytes/Pydantic models that are auto-coerced into `Response` objects, and helper factories (`Query`, `Path`, `Depends`) bring aliasing plus lightweight dependency injection.
+- **Pydantic ready**: `BaseModel` ships as a first-class dependency; annotate handler parameters with models to validate/coerce query + path params, or return models directly for JSON serialization.
 - **Middleware pipeline**: `RsgiApp` composes middleware callables before invoking the router, enabling logging, auth, or metrics hooks.
 - **Rich responses**: Built-in helpers cover text, JSON, HTML, template rendering (Jinja2), and optional accelerators (`UJSONResponse`, `ORJSONResponse`, `MsgPackResponse`).
 - **Templating**: `TemplateEngine` wraps Jinja2 environments; `TemplateResponse` renders named templates and handles content types automatically.
